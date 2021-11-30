@@ -1,13 +1,17 @@
 require_relative "product"
 require_relative "order"
 require_relative "payment"
+require_relative "catalogue"
 
-phone = Product.new("Phone", "Phone description", ["lol", "brol"], 399.90)
-car = Product.new("Car", "Car description", ["lol", "brol", "biruleibe"], 5000)
+phone = Product.new("phone", "Phone description", ["phone", "android"], 399.90)
+car = Product.new("car", "Car description", ["car", "automobile"], 5000)
+iphone = Product.new("iPhone", "iPhone description", ["phone", "apple"], 900)
+iphone_2 = Product.new("iPhone 2", "iPhone 2 description", ["phone", "apple"], 1000)
 
-order = Order.new()
-order.add_product(phone)
-order.add_product(car)
-p order.products()
+catalogue = Catalogue.new()
+catalogue.add_product(phone)
+catalogue.add_product(car)
+catalogue.add_product(iphone)
+catalogue.add_product(iphone_2)
 
-order.pay_order(CashPayment)
+p catalogue.sort_by_name()

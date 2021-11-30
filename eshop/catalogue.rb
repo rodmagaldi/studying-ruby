@@ -1,6 +1,12 @@
-require_relative "product"
+require_relative "mixins/searchable.rb"
+require_relative "mixins/filterable.rb"
+require_relative "mixins/sortable.rb"
 
 class Catalogue
+    include Searchable
+    include Filterable
+    include Sortable
+
     def initialize()
         @catalogue = []
     end
@@ -19,18 +25,3 @@ class Catalogue
         @catalogue.find { |product| product.name() == name }
     end
 end
-
-phone = Product.new("Phone", "Phone description", ["lol", "brol"], 399.90)
-car = Product.new("Car", "Car description", ["lol", "brol", "biruleibe"], 5000)
-
-catalogue = Catalogue.new()
-catalogue.add_product(phone)
-p catalogue.catalogue()
-
-catalogue.add_product(car)
-p catalogue.catalogue()
-
-catalogue.remove_product(phone)
-p catalogue.catalogue()
-
-p catalogue.get_product_by_name("Car")
